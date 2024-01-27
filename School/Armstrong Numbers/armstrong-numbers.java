@@ -22,16 +22,16 @@ class GFG {
 class Solution {
     static String armstrongNumber(int n){
         // code here
+        int sum=0;
         int temp=n;
-        int total=0;
-        while(temp!=0)
+        while(temp>0)
         {
-            int d=temp%10;
-            total=(total)+(d*d*d);
+            int lastdigit=temp%10;
             temp=temp/10;
+            sum=sum+(lastdigit*lastdigit*lastdigit);
+            
         }
-        
-        if(total==n)
+        if(n==sum)
         {
             return "Yes";
         }
