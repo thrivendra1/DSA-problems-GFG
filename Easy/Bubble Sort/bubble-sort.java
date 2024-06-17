@@ -14,9 +14,9 @@ class Solution
 	public static void bubbleSort(int arr[], int n)
     {
         //code here
-        for(int i=0;i<arr.length-1;i++)
+        for(int i=0;i<n;i++)
         {
-            for(int j=0;j<arr.length-i-1;j++)
+            for(int j=0;j<n-1-i;j++)
             {
                 if(arr[j]>arr[j+1])
                 {
