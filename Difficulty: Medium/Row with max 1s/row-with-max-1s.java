@@ -7,19 +7,16 @@ import java.util.*;
 public class Main {
 
     public static void main(String[] args) throws Exception {
-        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        int tc = Integer.parseInt(br.readLine().trim());
+        Scanner sc = new Scanner(System.in);
+        int tc = sc.nextInt();
         while (tc-- > 0) {
-            String[] inputLine;
-            inputLine = br.readLine().trim().split(" ");
-            int n = Integer.parseInt(inputLine[0]);
-            int m = Integer.parseInt(inputLine[1]);
-            int[][] arr = new int[n][m];
-            inputLine = br.readLine().trim().split(" ");
+            int n = sc.nextInt();
+            int m = sc.nextInt();
+            int arr[][] = new int[n][m];
 
             for (int i = 0; i < n; i++) {
                 for (int j = 0; j < m; j++) {
-                    arr[i][j] = Integer.parseInt(inputLine[i * m + j]);
+                    arr[i][j] = sc.nextInt();
                 }
             }
             int ans = new Solution().rowWithMax1s(arr);
@@ -36,21 +33,40 @@ public class Main {
 class Solution {
     public int rowWithMax1s(int arr[][]) 
     {
+        int target=1;
         int index=-1;
-        int maxcount=0;
+        int first=0;
+        int second=0;
         for(int i=0;i<arr.length;i++)
         {
-            int countones=0;
-            for(int j=0;j<arr[i].length;j++)
+            int low=0;
+            int high=arr[i].length-1;
+            int ans=-1;
+
+            while(low<=high)
             {
-                countones+=arr[i][j];
+                int mid=(low+high)/2;
+                if(arr[i][mid]==target)
+                {
+                    first=arr[i].length-mid;
+                    high=mid-1;
+                }
+                else
+                {
+                    low=mid+1;
+                }
             }
-            if(countones>maxcount)
+            if(first>second)
             {
-                maxcount=countones;
+                second=first;
                 index=i;
             }
         }
+//        if(index>=0)
+//        {
+//            return index;
+//        }
+//        return -1;
         return index;
         // code here
     }
